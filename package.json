@@ -1,0 +1,44 @@
+{
+  "name": "numbers-list",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Numbers list React application",
+  "author": "atumv",
+  "scripts": {
+    "api": "json-server --watch server/api/db.json --port 4000",
+    "dev": "react-scripts start",
+    "start": "run-p api dev",
+    "build": "react-scripts build"
+  },
+  "dependencies": {
+    "@types/node": "^16.11.21",
+    "@types/react": "^17.0.38",
+    "@types/react-dom": "^17.0.11",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-scripts": "5.0.0",
+    "typescript": "^4.5.5"
+  },
+  "devDependencies": {
+    "json-server": "^0.17.0",
+    "npm-run-all": "^4.1.5",
+    "sass": "^1.49.0"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
