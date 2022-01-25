@@ -17,5 +17,5 @@ export interface InputProps {
 }
 
 export interface SearchResultsProps {
-  searchResults: [{ id: number; number: string }] | [];
+  searchResults: IResults[];
 }

@@ -8,7 +8,7 @@ import { IResults } from './interfaces/interfaces';
 
 const App: React.FC = () => {
   const [apiUrl] = useState<string>('http://localhost:4000/numbers');
-  const [searchResults, setSearchResults] = useState<[IResults] | []>([]);
+  const [searchResults, setSearchResults] = useState<IResults[]>([]);
   const [maskCheckError, setMaskCheckError] = useState<boolean>(false);
   const [noResultsError, setNoResultsError] = useState<boolean>(false);
   const [defaultBorderStyle, setDefaultBorderStyle] = useState<boolean>(true);
