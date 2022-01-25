@@ -23,12 +23,14 @@ body {
 }
 
 .app {
-  position: relative;
+  width: 100vw;
   padding-bottom: 4rem;
+  position: relative;
 }
 
 .form {
   padding: 0 1rem;
+  text-align: center;
 }
 
 .input {
@@ -57,6 +59,8 @@ body {
   @media (max-width: 576px) {
     display: block;
     width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
     text-align: center;
     border-right-width: 2px;
     border-top-right-radius: 5px;
@@ -86,6 +90,8 @@ body {
   @media (max-width: 576px) {
     display: block;
     width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
     border-top-left-radius: 0px;
     border-top-right-radius: 0px;
     border-bottom-left-radius: 5px;
