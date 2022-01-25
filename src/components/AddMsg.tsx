@@ -1,7 +1,7 @@
 import React from 'react';
 
-const SuccessAddMsg: React.FC = () => (
+const AddMsg: React.FC = () => (
   <p className="success-add">Номер успешно добавлен.</p>
 );
 
-export default SuccessAddMsg;
+export default AddMsg;
