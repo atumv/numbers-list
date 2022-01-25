@@ -14,9 +14,9 @@ const App: React.FC = () => {
   const [defaultBorderStyle, setDefaultBorderStyle] = useState<boolean>(true);
   const [showAddMsg, setShowAddMsg] = useState<boolean>(false);
 
-  const addNumber = (e: any): void => {
+  const addNumber = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
-    const input = e.target.elements[0];
+    const input = e.currentTarget.elements[0] as HTMLInputElement;
     const regex = /^\+7\s\d{3}\s\d{3}\s\d{2}\s\d{2}$/;
     if (regex.test(input.value)) {
       sendNumber(input.value);
@@ -29,7 +29,7 @@ const App: React.FC = () => {
     }
   };
 
-  const getSearchResults = async (e: any) => {
+  const getSearchResults = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = e.target.value;
     if (!inputValue.trim() || inputValue.match(/[a-zA-Zа-яА-Я]/)) {
       setSearchResults([]);
@@ -54,7 +54,7 @@ const App: React.FC = () => {
     return data;
   };
 
-  const sendNumber = (value: any) => {
+  const sendNumber = (value: string) => {
     const options = {
       method: 'POST',
       headers: {
@@ -69,17 +69,17 @@ const App: React.FC = () => {
     fetch(apiUrl, options);
   };
 
-  const formatNumber = (e: any) => {
-    if (e.target.value.match(/^[1234569]$/)) {
-      e.target.value = '+7 ' + e.target.value;
-    } else if (e.target.value.match(/^[78]$/)) {
-      e.target.value = '+7 ';
+  const formatNumber = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.currentTarget.value.match(/^[1234569]$/)) {
+      e.currentTarget.value = '+7 ' + e.currentTarget.value;
+    } else if (e.currentTarget.value.match(/^[78]$/)) {
+      e.currentTarget.value = '+7 ';
     } else if (
-      e.target.value.match(/^\+7\s\d{3}$/) ||
-      e.target.value.match(/^\+7\s\d{3}\s\d{3}$/) ||
-      e.target.value.match(/^\+7\s\d{3}\s\d{3}\s\d{2}$/)
+      e.currentTarget.value.match(/^\+7\s\d{3}$/) ||
+      e.currentTarget.value.match(/^\+7\s\d{3}\s\d{3}$/) ||
+      e.currentTarget.value.match(/^\+7\s\d{3}\s\d{3}\s\d{2}$/)
     ) {
-      e.target.value += ' ';
+      e.currentTarget.value += ' ';
     }
   };
 
