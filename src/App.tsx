@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Form from './components/Form';
 import Input from './components/Input';
 import AddBtn from './components/AddBtn';
-import SuccessAddMsg from './components/SuccessAddMsg';
+import AddMsg from './components/AddMsg';
 import SearchResults from './components/SearchResults';
 import { IResults } from './interfaces/interfaces';
 
@@ -106,7 +106,7 @@ const App: React.FC = () => {
       {searchResults.length > 0 && (
         <SearchResults searchResults={searchResults} />
       )}
-      {showAddMsg && <SuccessAddMsg />}
+      {showAddMsg && <AddMsg />}
     </div>
   );
 };
