@@ -54,14 +54,15 @@ body {
     color: #ccc;
   }
 
-  @media (max-width: 320px) {
+  @media (max-width: 576px) {
+    display: block;
+    width: 100%;
+    text-align: center;
     border-right-width: 2px;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 0px;
     border-bottom-left-radius: 0px;
     border-bottom-width: 0px;
-    width: 100%;
-    text-align: center;
   }
 }
 
@@ -82,7 +83,7 @@ body {
     box-shadow: 0 0 6px #343b62;
   }
 
-  @media (max-width: 320px) {
+  @media (max-width: 576px) {
     display: block;
     width: 100%;
     border-top-left-radius: 0px;
