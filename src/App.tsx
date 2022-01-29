@@ -74,18 +74,18 @@ const App: React.FC = () => {
   };
 
   const formatNumber = (e: React.KeyboardEvent<HTMLInputElement>): void => {
-    if (e.currentTarget.value.match(/^[1234569]$/)) {
-      e.currentTarget.value = '+7 ' + e.currentTarget.value;
-    } else if (e.currentTarget.value.match(/^\+7$/)) {
-      e.currentTarget.value = '+7 ';
-    } else if (e.currentTarget.value.match(/^[78]$/)) {
-      e.currentTarget.value = '+7 ';
+    const input = e.currentTarget;
+
+    if (input.value.match(/^[1234569]$/)) {
+      input.value = '+7 ' + input.value;
+    } else if (input.value.match(/^\+7$/) || input.value.match(/^[78]$/)) {
+      input.value = '+7 ';
     } else if (
-      e.currentTarget.value.match(/^\+7\s\d{3}$/) ||
-      e.currentTarget.value.match(/^\+7\s\d{3}\s\d{3}$/) ||
-      e.currentTarget.value.match(/^\+7\s\d{3}\s\d{3}\s\d{2}$/)
+      input.value.match(/^\+7\s\d{3}$/) ||
+      input.value.match(/^\+7\s\d{3}\s\d{3}$/) ||
+      input.value.match(/^\+7\s\d{3}\s\d{3}\s\d{2}$/)
     ) {
-      e.currentTarget.value += ' ';
+      input.value += ' ';
     }
   };
 
