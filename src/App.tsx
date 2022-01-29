@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import debounce from 'lodash.debounce';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from './interfaces/interfaces';
 import { AppDispatch } from './store/store';
@@ -95,11 +96,18 @@ const App: React.FC = () => {
     getSearchResults(e);
   };
 
+  const debouncedHandleChange = debounce(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      handleChange(e);
+    },
+    500
+  );
+
   return (
     <div className="app">
       <Form onSubmit={sendNumber}>
         <Input
-          onChange={handleChange}
+          onChange={debouncedHandleChange}
           onKeyPress={formatNumber}
           wrongNumberFormat={wrongNumberFormat}
           noSearchResults={noSearchResults}
