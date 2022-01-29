@@ -62,7 +62,7 @@ const App: React.FC = () => {
     const query = `?number_like=${queryValue}`;
     const url = `${apiUrl}${query}`;
 
-    if (inputValue.match(/[a-zA-Zа-яА-Я]/) || !queryValue) {
+    if (!queryValue) {
       dispatch(clearFetchedNumbers());
     } else {
       dispatch(fetchNumbers(url));
