@@ -56,7 +56,7 @@ const App: React.FC = () => {
     }
   };
 
-  const getSearchResults = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const getSearchResults = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const inputValue = e.target.value;
     const queryValue = `${inputValue.split(' ').slice(1).join('+')}`;
     const query = `?number_like=${queryValue}`;
@@ -73,7 +73,7 @@ const App: React.FC = () => {
     }
   };
 
-  const formatNumber = (e: React.KeyboardEvent<HTMLInputElement>) => {
+  const formatNumber = (e: React.KeyboardEvent<HTMLInputElement>): void => {
     if (e.currentTarget.value.match(/^[1234569]$/)) {
       e.currentTarget.value = '+7 ' + e.currentTarget.value;
     } else if (e.currentTarget.value.match(/^\+7$/)) {
@@ -89,7 +89,7 @@ const App: React.FC = () => {
     }
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     dispatch(hideNewNumberAddedMsg());
     dispatch(hideWrongNumberFormatError());
     dispatch(hideNoSearchResultsError());

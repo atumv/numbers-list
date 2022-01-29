@@ -4,8 +4,8 @@ export interface fetchedNumbers {
 }
 
 export interface FormProps {
-  children: React.ReactNode;
   onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+  children: React.ReactNode;
 }
 
 export interface InputProps {
