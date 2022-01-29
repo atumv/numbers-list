@@ -1,3 +1,5 @@
+import { Dispatch } from 'redux';
+
 import {
   FETCH_NUMBERS,
   CLEAR_FETCHED_NUMBERS,
@@ -8,8 +10,6 @@ import {
   SHOW_NEW_NUMBER_ADDED_MSG,
   HIDE_NEW_NUMBER_ADDED_MSG,
 } from './actionTypes';
-
-import { Dispatch } from 'redux';
 
 export const fetchNumbers = (url: string) => {
   return async (dispatch: Dispatch) => {

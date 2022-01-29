@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from './interfaces/interfaces';
 import { AppDispatch } from './store/store';
@@ -44,6 +43,7 @@ const App: React.FC = () => {
     e.preventDefault();
     const input = e.currentTarget.elements[0] as HTMLInputElement;
     const regex = /^\+7\s\d{3}\s\d{3}\s\d{2}\s\d{2}$/;
+
     if (regex.test(input.value)) {
       addNumber(apiUrl, input.value);
       input.value = '';
@@ -55,15 +55,15 @@ const App: React.FC = () => {
     }
   };
 
-  const getSearchResults = async (e: React.ChangeEvent<HTMLInputElement>) => {
+  const getSearchResults = (e: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = e.target.value;
-    if (!inputValue.trim() || inputValue.match(/[a-zA-Zа-яА-Я]/)) {
+    const queryValue = `${inputValue.split(' ').slice(1).join('+')}`;
+    const query = `?number_like=${queryValue}`;
+    const url = `${apiUrl}${query}`;
+
+    if (inputValue.match(/[a-zA-Zа-яА-Я]/) || !queryValue) {
       dispatch(clearFetchedNumbers());
     } else {
-      const url = `${apiUrl}?number_like=${inputValue
-        .split(' ')
-        .slice(1)
-        .join('+')}`;
       dispatch(fetchNumbers(url));
       if (!fetchedNumbers.length) {
         dispatch(clearFetchedNumbers());
