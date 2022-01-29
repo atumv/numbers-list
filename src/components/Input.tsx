@@ -4,14 +4,13 @@ import { InputProps } from '../interfaces/interfaces';
 const Input: React.FC<InputProps> = ({
   onChange,
   onKeyPress,
-  maskCheckError,
-  noResultsError,
-  defaultBorderStyle,
+  wrongNumberFormat,
+  noSearchResults,
 }) => (
   <input
-    className={`${defaultBorderStyle ? 'input' : ''} ${
-      noResultsError ? 'no-results-error' : ''
-    } ${maskCheckError ? 'mask-check-error' : ''}`}
+    className={`${noSearchResults ? 'input no-results-error' : 'input'} ${
+      wrongNumberFormat ? 'input mask-check-error' : 'input'
+    }`}
     type="tel"
     onChange={onChange}
     onKeyPress={onKeyPress}

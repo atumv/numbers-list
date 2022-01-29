@@ -2,7 +2,7 @@
   "name": "numbers-list",
   "version": "0.1.0",
   "private": true,
-  "description": "Numbers list React application",
+  "description": "Phone numbers list React application",
   "author": "atumv",
   "scripts": {
     "api": "json-server --watch server/api/db.json --port 4000",
@@ -14,9 +14,13 @@
     "@types/node": "^16.11.21",
     "@types/react": "^17.0.38",
     "@types/react-dom": "^17.0.11",
+    "@types/react-redux": "^7.1.22",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-redux": "^7.2.6",
     "react-scripts": "5.0.0",
+    "redux": "^4.1.2",
+    "redux-thunk": "^2.4.1",
     "typescript": "^4.5.5"
   },
   "devDependencies": {

@@ -1,4 +1,4 @@
-export interface IResults {
+export interface fetchedNumbers {
   id: number;
   number: string;
 }
@@ -11,11 +11,16 @@ export interface FormProps {
 export interface InputProps {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onKeyPress: (e: React.KeyboardEvent<HTMLInputElement>) => void;
-  maskCheckError: boolean;
-  noResultsError: boolean;
-  defaultBorderStyle: boolean;
+  wrongNumberFormat: boolean;
+  noSearchResults: boolean;
 }
 
 export interface SearchResultsProps {
-  searchResults: IResults[];
+  searchResults: fetchedNumbers[];
+}
+
+export interface RootState {
+  fetchedNumbers: { fetchedNumbers: fetchedNumbers[] };
+  errors: { wrongNumberFormat: boolean; noSearchResults: boolean };
+  messages: { newNumberAdded: boolean };
 }

@@ -1,72 +1,75 @@
 import React, { useState } from 'react';
+
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState } from './interfaces/interfaces';
+import { AppDispatch } from './store/store';
+
+import {
+  fetchNumbers,
+  clearFetchedNumbers,
+  showWrongNumberFormatError,
+  hideWrongNumberFormatError,
+  showNoSearchResultsError,
+  hideNoSearchResultsError,
+  showNewNumberAddedMsg,
+  hideNewNumberAddedMsg,
+  addNumber,
+} from './store/actions';
+
 import Form from './components/Form';
 import Input from './components/Input';
 import AddBtn from './components/AddBtn';
-import AddMsg from './components/AddMsg';
 import SearchResults from './components/SearchResults';
-import { IResults } from './interfaces/interfaces';
+import NewNumberAddedMsg from './components/NewNumberAddedMsg';
 
 const App: React.FC = () => {
   const [apiUrl] = useState<string>('http://localhost:4000/numbers');
-  const [searchResults, setSearchResults] = useState<IResults[]>([]);
-  const [maskCheckError, setMaskCheckError] = useState<boolean>(false);
-  const [noResultsError, setNoResultsError] = useState<boolean>(false);
-  const [defaultBorderStyle, setDefaultBorderStyle] = useState<boolean>(true);
-  const [showAddMsg, setShowAddMsg] = useState<boolean>(false);
 
-  const addNumber = (e: React.FormEvent<HTMLFormElement>): void => {
+  const fetchedNumbers = useSelector(
+    (state: RootState) => state.fetchedNumbers.fetchedNumbers
+  );
+  const wrongNumberFormat = useSelector(
+    (state: RootState) => state.errors.wrongNumberFormat
+  );
+  const noSearchResults = useSelector(
+    (state: RootState) => state.errors.noSearchResults
+  );
+  const newNumberAdded = useSelector(
+    (state: RootState) => state.messages.newNumberAdded
+  );
+
+  const dispatch = useDispatch<AppDispatch>();
+
+  const sendNumber = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     const input = e.currentTarget.elements[0] as HTMLInputElement;
     const regex = /^\+7\s\d{3}\s\d{3}\s\d{2}\s\d{2}$/;
     if (regex.test(input.value)) {
-      sendNumber(input.value);
+      addNumber(apiUrl, input.value);
       input.value = '';
-      setSearchResults([]);
-      setShowAddMsg(true);
-      setNoResultsError(false);
+      dispatch(clearFetchedNumbers());
+      dispatch(showNewNumberAddedMsg());
+      dispatch(hideNoSearchResultsError());
     } else {
-      setMaskCheckError(true);
+      dispatch(showWrongNumberFormatError());
     }
   };
 
   const getSearchResults = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = e.target.value;
     if (!inputValue.trim() || inputValue.match(/[a-zA-Zа-яА-Я]/)) {
-      setSearchResults([]);
+      dispatch(clearFetchedNumbers());
     } else {
       const url = `${apiUrl}?number_like=${inputValue
         .split(' ')
         .slice(1)
         .join('+')}`;
-      const results = await fetchData(url);
-      if (!results.length) {
-        setSearchResults([]);
-        setNoResultsError(true);
-      } else {
-        setSearchResults(results);
+      dispatch(fetchNumbers(url));
+      if (!fetchedNumbers.length) {
+        dispatch(clearFetchedNumbers());
+        dispatch(showNoSearchResultsError());
       }
     }
-  };
-
-  const fetchData = async (url: string) => {
-    const res = await fetch(url);
-    const data = await res.json();
-    return data;
-  };
-
-  const sendNumber = (value: string) => {
-    const options = {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        id: Date.now(),
-        number: value,
-      }),
-    };
-    fetch(apiUrl, options);
   };
 
   const formatNumber = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -84,29 +87,27 @@ const App: React.FC = () => {
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setShowAddMsg(false);
-    setMaskCheckError(false);
-    setNoResultsError(false);
-    setDefaultBorderStyle(true);
+    dispatch(hideNewNumberAddedMsg());
+    dispatch(hideWrongNumberFormatError());
+    dispatch(hideNoSearchResultsError());
     getSearchResults(e);
   };
 
   return (
     <div className="app">
-      <Form onSubmit={addNumber}>
+      <Form onSubmit={sendNumber}>
         <Input
           onChange={handleChange}
           onKeyPress={formatNumber}
-          maskCheckError={maskCheckError}
-          noResultsError={noResultsError}
-          defaultBorderStyle={defaultBorderStyle}
+          wrongNumberFormat={wrongNumberFormat}
+          noSearchResults={noSearchResults}
         />
         <AddBtn />
       </Form>
-      {searchResults.length > 0 && (
-        <SearchResults searchResults={searchResults} />
+      {fetchedNumbers.length > 0 && (
+        <SearchResults searchResults={fetchedNumbers} />
       )}
-      {showAddMsg && <AddMsg />}
+      {newNumberAdded && <NewNumberAddedMsg />}
     </div>
   );
 };
