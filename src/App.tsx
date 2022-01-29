@@ -45,10 +45,10 @@ const App: React.FC = () => {
     const regex = /^\+7\s\d{3}\s\d{3}\s\d{2}\s\d{2}$/;
 
     if (regex.test(input.value)) {
-      addNumber(apiUrl, input.value);
+      dispatch(addNumber(apiUrl, input.value));
       input.value = '';
-      dispatch(clearFetchedNumbers());
       dispatch(showNewNumberAddedMsg());
+      dispatch(clearFetchedNumbers());
       dispatch(hideNoSearchResultsError());
     } else {
       dispatch(showWrongNumberFormatError());

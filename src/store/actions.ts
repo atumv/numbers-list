@@ -3,6 +3,7 @@ import { Dispatch } from 'redux';
 import {
   FETCH_NUMBERS,
   CLEAR_FETCHED_NUMBERS,
+  ADD_NUMBER,
   SHOW_WRONG_NUMBER_FORMAT_ERROR,
   HIDE_WRONG_NUMBER_FORMAT_ERROR,
   SHOW_NO_SEARCH_RESULTS_ERROR,
@@ -42,7 +43,7 @@ export const addNumber = (apiUrl: string, value: string) => {
         }),
       };
       await fetch(apiUrl, options);
-      dispatch({ type: SHOW_NEW_NUMBER_ADDED_MSG });
+      dispatch({ type: ADD_NUMBER });
     } catch (err) {
       console.log(`Ошибка: ${err}`);
     }
