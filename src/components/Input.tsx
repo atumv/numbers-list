@@ -1,7 +1,7 @@
 import React from 'react';
 import { InputProps } from '../interfaces/interfaces';
 
-const Input: React.FC<InputProps> = ({
+export const Input: React.FC<InputProps> = ({
   onChange,
   onKeyPress,
   wrongNumberFormat,
@@ -19,5 +19,3 @@ const Input: React.FC<InputProps> = ({
     autoFocus
   />
 );
-
-export default Input;

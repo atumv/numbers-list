@@ -16,11 +16,11 @@ import {
   addNumber,
 } from './store/actions';
 
-import Form from './components/Form';
-import Input from './components/Input';
-import AddBtn from './components/AddBtn';
-import SearchResults from './components/SearchResults';
-import NewNumberAddedMsg from './components/NewNumberAddedMsg';
+import { Form } from './components/Form';
+import { Input } from './components/Input';
+import { AddBtn } from './components/AddBtn';
+import { SearchResults } from './components/SearchResults';
+import { NewNumberAddedMsg } from './components/NewNumberAddedMsg';
 
 const App: React.FC = () => {
   const [apiUrl] = useState<string>('http://localhost:4000/numbers');
