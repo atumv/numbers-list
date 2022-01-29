@@ -1,4 +1,4 @@
-export interface fetchedNumbers {
+export interface fetchedNumber {
   id: number;
   number: string;
 }
@@ -16,11 +16,11 @@ export interface InputProps {
 }
 
 export interface SearchResultsProps {
-  searchResults: fetchedNumbers[];
+  searchResults: fetchedNumber[];
 }
 
 export interface RootState {
-  fetchedNumbers: { fetchedNumbers: fetchedNumbers[] };
+  fetchedNumbers: { fetchedNumbers: fetchedNumber[] };
   errors: { wrongNumberFormat: boolean; noSearchResults: boolean };
   messages: { newNumberAdded: boolean };
 }
