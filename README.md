@@ -1,5 +1,7 @@
 # Numbers List App
 
+![example](/public/example.gif)
+
 Simple numbers list application with live search built using React, Redux & TypeScript.
 
 The project is based on [`Create React App`](https://github.com/facebook/create-react-app).
