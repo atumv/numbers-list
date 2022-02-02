@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import debounce from 'lodash.debounce';
 import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from './interfaces/interfaces';
-import { AppDispatch } from './store/store';
+import { RootState, AppDispatch } from './store/store';
 
 import {
   fetchNumbers,

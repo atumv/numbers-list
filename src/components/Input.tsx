@@ -1,5 +1,11 @@
 import React from 'react';
-import { InputProps } from '../interfaces/interfaces';
+
+interface InputProps {
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onKeyPress: (e: React.KeyboardEvent<HTMLInputElement>) => void;
+  wrongNumberFormat: boolean;
+  noSearchResults: boolean;
+}
 
 export const Input: React.FC<InputProps> = ({
   onChange,
