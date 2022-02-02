@@ -44,7 +44,7 @@ const App: React.FC = () => {
     const input = e.currentTarget.elements[0] as HTMLInputElement;
     const regex = /^\+7\s\d{3}\s\d{3}\s\d{2}\s\d{2}$/;
 
-    if (regex.test(input.value)) {
+    if (regex.test(input.value) && !fetchedNumbers.length) {
       dispatch(addNumber(apiUrl, input.value));
       input.value = '';
       dispatch(showNewNumberAddedMsg());
