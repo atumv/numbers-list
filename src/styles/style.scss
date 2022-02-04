@@ -4,8 +4,7 @@
 *::before,
 *::after {
   box-sizing: border-box;
-  font-family: 'Fira Sans', 'Roboto', 'Open Sans', 'Noto Sans', 'Arial',
-    'Tahoma', 'Verdana', sans-serif;
+  font-family: 'Fira Sans', 'Roboto', 'Open Sans', 'Arial', sans-serif;
 }
 
 html {
@@ -23,18 +22,18 @@ body {
 }
 
 .app {
-  padding-bottom: 4rem;
+  padding-bottom: 64px;
   position: relative;
 }
 
 .form {
-  padding: 0 1rem;
+  padding: 0 16px;
   text-align: center;
 }
 
 .input {
-  padding: 1rem 0.5rem;
-  font-size: 1rem;
+  padding: 16px 8px;
+  font-size: 16px;
   border: 2px solid #c5c5c5;
   border-right-width: 0;
   border-radius: 5px;
@@ -76,8 +75,8 @@ body {
   border-radius: 5px;
   border-top-left-radius: 0px;
   border-bottom-left-radius: 0px;
-  padding: 1rem 2rem;
-  font-size: 1rem;
+  padding: 16px 32px;
+  font-size: 16px;
   color: #fff;
   cursor: pointer;
   outline: none;

@@ -39,9 +39,9 @@ const App: React.FC = () => {
 
   const dispatch = useDispatch<AppDispatch>();
 
-  const sendNumber = (e: React.FormEvent<HTMLFormElement>): void => {
-    e.preventDefault();
-    const input = e.currentTarget.elements[0] as HTMLInputElement;
+  const sendNumber = (event: React.FormEvent<HTMLFormElement>): void => {
+    event.preventDefault();
+    const input = event.currentTarget.elements[0] as HTMLInputElement;
     const regex = /^\+7\s\d{3}\s\d{3}\s\d{2}\s\d{2}$/;
 
     if (regex.test(input.value) && !fetchedNumbers.length) {
@@ -55,8 +55,10 @@ const App: React.FC = () => {
     }
   };
 
-  const getSearchResults = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    const inputValue = e.target.value;
+  const getSearchResults = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ): void => {
+    const inputValue = event.target.value;
     const queryValue = `${inputValue.split(' ').slice(1).join('+')}`;
     const query = `?number_like=${queryValue}`;
     const url = `${apiUrl}${query}`;
@@ -72,8 +74,8 @@ const App: React.FC = () => {
     }
   };
 
-  const formatNumber = (e: React.KeyboardEvent<HTMLInputElement>): void => {
-    const input = e.currentTarget;
+  const formatNumber = (event: React.KeyboardEvent<HTMLInputElement>): void => {
+    const input = event.currentTarget;
 
     if (input.value.match(/^[1234569]$/)) {
       input.value = '+7 ' + input.value;
@@ -88,16 +90,16 @@ const App: React.FC = () => {
     }
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     dispatch(hideNewNumberAddedMsg());
     dispatch(hideWrongNumberFormatError());
     dispatch(hideNoSearchResultsError());
-    getSearchResults(e);
+    getSearchResults(event);
   };
 
   const debouncedHandleChange = debounce(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      handleChange(e);
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      handleChange(event);
     },
     500
   );
