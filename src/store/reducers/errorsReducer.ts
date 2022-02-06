@@ -3,7 +3,9 @@ import {
   HIDE_WRONG_NUMBER_FORMAT_ERROR,
   SHOW_NO_SEARCH_RESULTS_ERROR,
   HIDE_NO_SEARCH_RESULTS_ERROR,
-} from '../actionTypes';
+  FETCH_HAS_RESULTS,
+  FETCH_NO_RESULTS,
+} from 'store/actionTypes';
 
 const initialState = {
   wrongNumberFormat: false,
@@ -34,6 +36,16 @@ export const errorsReducer = (
       return {
         ...state,
         noSearchResults: false,
+      };
+    case FETCH_HAS_RESULTS:
+      return {
+        ...state,
+        noSearchResults: false,
+      };
+    case FETCH_NO_RESULTS:
+      return {
+        ...state,
+        noSearchResults: true,
       };
 
     default:

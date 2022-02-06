@@ -1,11 +1,7 @@
-import {
-  FETCH_NUMBERS,
-  CLEAR_FETCHED_NUMBERS,
-  ADD_NUMBER,
-} from '../actionTypes';
+import { FETCH_NUMBERS, CLEAR_NUMBERS, ADD_NUMBER } from 'store/actionTypes';
 
 const initialState = {
-  fetchedNumbers: [],
+  numbers: [],
 };
 
 export const numbersReducer = (state = initialState, action: any) => {
@@ -13,12 +9,12 @@ export const numbersReducer = (state = initialState, action: any) => {
     case FETCH_NUMBERS:
       return {
         ...state,
-        fetchedNumbers: action.payload,
+        numbers: action.payload,
       };
-    case CLEAR_FETCHED_NUMBERS:
+    case CLEAR_NUMBERS:
       return {
         ...state,
-        fetchedNumbers: [],
+        numbers: [],
       };
     case ADD_NUMBER:
       return state;

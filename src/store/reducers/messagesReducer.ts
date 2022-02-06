@@ -1,10 +1,11 @@
 import {
-  SHOW_NEW_NUMBER_ADDED_MSG,
-  HIDE_NEW_NUMBER_ADDED_MSG,
-} from '../actionTypes';
+  SHOW_NUMBER_ADDED_MSG,
+  HIDE_NUMBER_ADDED_MSG,
+  ADD_NUMBER,
+} from 'store/actionTypes';
 
 const initialState = {
-  newNumberAdded: false,
+  numberAdded: false,
 };
 
 export const messagesReducer = (
@@ -12,15 +13,20 @@ export const messagesReducer = (
   action: { type: string }
 ) => {
   switch (action.type) {
-    case SHOW_NEW_NUMBER_ADDED_MSG:
+    case SHOW_NUMBER_ADDED_MSG:
       return {
         ...state,
-        newNumberAdded: true,
+        numberAdded: true,
       };
-    case HIDE_NEW_NUMBER_ADDED_MSG:
+    case HIDE_NUMBER_ADDED_MSG:
       return {
         ...state,
-        newNumberAdded: false,
+        numberAdded: false,
+      };
+    case ADD_NUMBER:
+      return {
+        ...state,
+        numberAdded: true,
       };
 
     default:

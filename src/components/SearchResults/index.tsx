@@ -1,4 +1,5 @@
 import React from 'react';
+import * as S from './styles';
 
 interface SearchResultsProps {
   searchResults: { id: number; number: string }[];
@@ -7,9 +8,9 @@ interface SearchResultsProps {
 export const SearchResults: React.FC<SearchResultsProps> = ({
   searchResults,
 }) => (
-  <ul className="search-results">
+  <S.SearchResults>
     {searchResults.map((number: { id: number; number: string }) => (
       <li key={number.id}>{number.number}</li>
     ))}
-  </ul>
+  </S.SearchResults>
 );
