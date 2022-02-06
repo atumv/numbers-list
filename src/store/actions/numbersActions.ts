@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { Dispatch } from 'redux';
 import {
   FETCH_NUMBERS,
@@ -10,8 +11,8 @@ import {
 export const fetchNumbers = (url: string) => {
   return async (dispatch: Dispatch) => {
     try {
-      const response = await fetch(url);
-      const numbers = await response.json();
+      const response = await axios.get(url);
+      const numbers = response.data;
 
       if (numbers.length) {
         dispatch(fetchHasResults());
@@ -27,20 +28,14 @@ export const fetchNumbers = (url: string) => {
 };
 
 export const addNumber = (apiUrl: string, value: string) => {
-  const options = {
-    method: 'POST',
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
+  return async (dispatch: Dispatch) => {
+    const data = {
       id: Date.now(),
       number: value,
-    }),
-  };
-  return async (dispatch: Dispatch) => {
+    };
+
     try {
-      await fetch(apiUrl, options);
+      await axios.post(apiUrl, data);
       dispatch({ type: ADD_NUMBER });
     } catch (error) {
       console.log(`Error: ${error}`);
