@@ -1,6 +1,6 @@
 # Numbers List
 
-![example](/public/example.gif)
+![preview](/assets/preview.gif)
 
 Simple numbers list application with live search built using React, Redux & TypeScript.
 
@@ -11,7 +11,7 @@ The project is based on [`Create React App`](https://github.com/facebook/create-
 - [`react`](https://www.npmjs.com/package/react)
 - [`redux`](https://www.npmjs.com/package/redux)
 - [`react-redux`](https://www.npmjs.com/package/react-redux)
-- [`redux-thunk`](https://www.npmjs.com/package/redux-thunk)
+- [`redux-saga`](https://www.npmjs.com/package/redux-saga)
 - [`typescript`](https://www.npmjs.com/package/typescript)
 - [`styled-components`](https://www.npmjs.com/package/styled-components)
 - [`json-server`](https://www.npmjs.com/package/json-server)

@@ -2,6 +2,7 @@ import React from 'react';
 import debounce from 'lodash.debounce';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState, AppDispatch } from 'store/store';
+import { API_URL } from 'constants/api';
 
 import {
   fetchNumbers,
@@ -28,8 +29,6 @@ import { SearchResults } from 'components/SearchResults';
 import { SuccessMsg } from 'components/SuccessMsg';
 
 const App: React.FC = () => {
-  const apiUrl: string = 'http://localhost:4000/numbers';
-
   const numbers = useSelector((state: RootState) => state.numbers.numbers);
   const wrongNumberFormat = useSelector(
     (state: RootState) => state.errors.wrongNumberFormat
@@ -49,7 +48,7 @@ const App: React.FC = () => {
     const regex = /^\+7\s\d{3}\s\d{3}\s\d{2}\s\d{2}$/;
 
     if (regex.test(input.value) && !numbers.length) {
-      dispatch(addNumber(apiUrl, input.value));
+      dispatch(addNumber(input.value));
       input.value = '';
       dispatch(hideNoSearchResultsError());
       dispatch(clearNumbers());
@@ -73,7 +72,7 @@ const App: React.FC = () => {
     const inputValue = event.target.value,
       queryValue = `${inputValue.split(' ').slice(1).join('+')}`,
       query = `?number_like=${queryValue}`,
-      url = `${apiUrl}${query}`;
+      url = `${API_URL}${query}`;
 
     if (!inputValue || inputValue.match(/^[a-zA-Zа-яА-Я\s]/)) {
       dispatch(clearNumbers());
