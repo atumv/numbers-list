@@ -7,7 +7,12 @@ import {
   FETCH_NO_RESULTS,
 } from 'store/actionTypes';
 
-const initialState = {
+interface ErrorsState {
+  wrongNumberFormat: boolean;
+  noSearchResults: boolean;
+}
+
+const initialState: ErrorsState = {
   wrongNumberFormat: false,
   noSearchResults: false,
 };

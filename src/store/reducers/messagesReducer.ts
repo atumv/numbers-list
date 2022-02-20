@@ -4,7 +4,11 @@ import {
   ADD_NUMBER,
 } from 'store/actionTypes';
 
-const initialState = {
+interface MessagesState {
+  numberAdded: boolean;
+}
+
+const initialState: MessagesState = {
   numberAdded: false,
 };
 

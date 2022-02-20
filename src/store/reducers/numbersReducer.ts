@@ -1,10 +1,20 @@
 import { FETCH_NUMBERS, CLEAR_NUMBERS, ADD_NUMBER } from 'store/actionTypes';
+import { INumber } from 'shared/interfaces';
 
-const initialState = {
+interface NumbersState {
+  numbers: INumber[];
+}
+
+interface NumbersAction {
+  type: string;
+  payload: INumber[];
+}
+
+const initialState: NumbersState = {
   numbers: [],
 };
 
-export const numbersReducer = (state = initialState, action: any) => {
+export const numbersReducer = (state = initialState, action: NumbersAction) => {
   switch (action.type) {
     case FETCH_NUMBERS:
       return {

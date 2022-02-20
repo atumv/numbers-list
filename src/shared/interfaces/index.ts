@@ -6,3 +6,8 @@ export interface Response {
   status?: number;
   statusText?: string;
 }
+
+export interface INumber {
+  id: number;
+  number: string;
+}

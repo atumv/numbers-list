@@ -1,6 +1,6 @@
 import { put, call, takeEvery, all, fork } from 'redux-saga/effects';
 
-import { Response } from 'shared/interfaces';
+import { Response, INumber } from 'shared/interfaces';
 
 import {
   FETCH_NUMBERS_REQUESTED,
@@ -14,14 +14,14 @@ import {
 
 import { fetchAllNumbers, addNewNumber } from 'store/api/numberApi';
 
-type Payload = {
+interface Payload {
   type: string;
-  payload: any;
-};
+  payload: string;
+}
 
 function* fetchNumbers() {
-  yield takeEvery(FETCH_NUMBERS_REQUESTED, function* ({ payload }: any) {
-    const numbers: any[] = yield call(fetchAllNumbers, payload);
+  yield takeEvery(FETCH_NUMBERS_REQUESTED, function* ({ payload }: Payload) {
+    const numbers: INumber[] = yield call(fetchAllNumbers, payload);
 
     if (numbers.length) {
       yield put({ type: FETCH_HAS_RESULTS });
@@ -34,7 +34,7 @@ function* fetchNumbers() {
 }
 
 function* addNumber() {
-  yield takeEvery(ADD_NUMBER_REQUESTED, function* ({ payload }: any) {
+  yield takeEvery(ADD_NUMBER_REQUESTED, function* ({ payload }: Payload) {
     const newNumber: Response = yield call(addNewNumber, payload);
     yield put({ type: ADD_NUMBER, payload: newNumber });
   });
